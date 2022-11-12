@@ -29,7 +29,7 @@ class Account(AbstractUser):
         null=False, 
         blank=False, 
         choices=RoleChoices.choices, 
-        verbose_name='Категория продукта'
+        verbose_name='Выбирете свою роль'
     )
 
     USERNAME_FIELD = 'email'
