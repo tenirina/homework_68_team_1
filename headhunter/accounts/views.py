@@ -9,22 +9,13 @@ from django.contrib.auth.models import User
 from accounts.forms import LoginForm, CustomUserCreationForm
 
 
-
 class RegisterView(CreateView):
     template_name = 'register.html'
     form_class = CustomUserCreationForm
     success_url = '/'
 
-    def get(self, request, *args, **kwargs):
-        next = request.GET.get('next')
-        form_data = {} if not next else {'next': next}
-        form = self.form_class(form_data)
-        print(form)
-        context = {'form': form}
-        return self.render_to_response(context)
-
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -59,4 +50,9 @@ class LoginView(TemplateView):
         login(request, user)
         if next:
             return redirect(next)
-        return redirect('index')
+        return redirect('login')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

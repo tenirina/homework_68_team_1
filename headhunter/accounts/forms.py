@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField(required=True, label='Логин')
+    username = forms.CharField(required=True, label='Логин')
     password = forms.CharField(required=True, label='Пароль', widget=forms.PasswordInput)
     next = forms.CharField(required=False, widget=forms.HiddenInput)
 
@@ -28,7 +28,6 @@ class CustomUserCreationForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data.get('password'))
-        user.groups.add('user')
 
         if commit:
             user.save()

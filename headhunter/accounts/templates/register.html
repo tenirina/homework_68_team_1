@@ -1,29 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load bootstrap5 %}
+{% load django_bootstrap5 %}
 
 {% block content %}
-    <div class="modal fade" id="register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Авторизация</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="POST">
-                        <div class="form">
-                            {% csrf_token %}
-                    
-                            {% bootstrap_form form %}
-                    
-                            {% bootstrap_button button_type="submit" content='Войти' %}
-                        </div>
-                    </form>
-                </div>
-            </div>
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <div class="form">
+            {% bootstrap_form form %}
+            {% bootstrap_button button_type="submit" button_class="btn-secondary" content='Register' %}
         </div>
-    </div>
+    </form>
 
 {% endblock %}
+

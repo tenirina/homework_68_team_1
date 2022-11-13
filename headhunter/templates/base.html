@@ -1,5 +1,5 @@
 {% load static %}
-{% load bootstrap5 %}
+{% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% bootstrap_messages %}
@@ -35,17 +35,16 @@
                         </li>
                     </ul>
                     {% if user.is_authenticated %}
-                        <span class="navbar-text">
-                            <button type="button" class="btn btn-primary me-5" data-bs-toggle="modal" data-bs-target="#login">
-                                Войти
-                            </button>
-                        <span class="navbar-text">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#register">
-                                Регистрация
-                            </button>
+                        <span class="navbar-nav">
+                            <a class="nav-link " href="{% url 'logout' %}">Выйти</a>
                         </span>
                     {% else %}
-
+                        <span class="navbar-nav">
+                            <a class="nav-link " href="{% url 'login' %}">Войти</a>
+                        </span>
+                        <span class="navbar-nav"с>
+                            <a class="nav-link " href="{% url 'register' %}">Регистрация</a>
+                        </span>
                     {% endif %}
                 </div>
             </div>
