@@ -11,48 +11,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>{% block title %} Base {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %} Head Hunter {% endblock %}</title>
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">HeadHunter</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                    </ul>
-                    {% if user.is_authenticated %}
-                        <span class="navbar-nav">
-                            <a class="nav-link " href="{% url 'logout' %}">Выйти</a>
-                        </span>
-                    {% else %}
-                        <span class="navbar-nav">
-                            <a class="nav-link " href="{% url 'login' %}">Войти</a>
-                        </span>
-                        <span class="navbar-nav"с>
-                            <a class="nav-link " href="{% url 'register' %}">Регистрация</a>
-                        </span>
-                    {% endif %}
-                </div>
-            </div>
 
-        </nav>
-        {% block content%}
-        {% endblock %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="container">
+            <a class="navbar-brand" href="#">HeadHunter</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                    <span class="navbar-nav">
+                        <a class="nav-link " href="{% url 'logout' %}">Выйти</a>
+                    </span>
+                {% else %}
+                    <span class="navbar-nav">
+                        <a class="nav-link" data-bs-toggle="modal" href="#login" role="button">Войти</a>
+                    </span>
+                    <span class="navbar-nav">
+                        <a class="nav-link" data-bs-toggle="modal" href="#login" role="button">Регистрация</a>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+   <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Аутентификация</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="row mb-3">
+                        <label for="inputUsername" class="col-sm-2 col-form-label">Логин</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputUsername">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputPass" class="col-sm-2 col-form-label">Пароль</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPass">
+                        </div>
+                    </div>
+                </form>
+          </div>
+          <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+             <a class="nav-link btn btn-secondary" role="button" href="{% url 'index' %}">Войти</a>
+          </div>
+        </div>
+      </div>
     </div>
+    {% block content%}{% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>

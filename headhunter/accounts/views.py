@@ -26,31 +26,30 @@ class RegisterView(CreateView):
 
 
 class LoginView(TemplateView):
-    template_name = 'login.html'
+    template_name = 'index.html'
     form = LoginForm
 
     def get(self, request, *args, **kwargs):
         next = request.GET.get('next')
         form_data = {} if not next else {'next': next}
         form = self.form(form_data)
-        print(form)
         context = {'form': form}
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
         form = self.form(request.POST)
         if not form.is_valid():
-            return redirect('login')
-        email = form.cleaned_data.get('email')
+            return redirect('index')
+        username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
         next = form.cleaned_data.get('next')
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(request, username=username, password=password)
         if not user:
-            return redirect('login')
+            return redirect('index')
         login(request, user)
         if next:
             return redirect(next)
-        return redirect('login')
+        return redirect('index')
 
 
 def logout_view(request):

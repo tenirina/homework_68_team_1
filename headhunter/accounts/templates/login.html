@@ -1,16 +1,14 @@
-
-
-
-{% extends 'base.html' %}
-{% load static %}
-{% load django_bootstrap5 %}
-
-{% block content %}
-    <form action="" method="POST">
-        <div class="form">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            {% bootstrap_button button_type="submit" button_class="btn-secondary" content='Sign' %}
+ <form action="" method="POST">
+    <div class="row mb-3">
+        <label for="inputUsername" class="col-sm-2 col-form-label">Логин</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputUsername">
         </div>
-    </form>
-{% endblock %}
+    </div>
+    <div class="row mb-3">
+        <label for="inputPass" class="col-sm-2 col-form-label">Пароль</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPass">
+        </div>
+    </div>
+</form>

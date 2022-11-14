@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HeadHunter</title>
-</head>
-<body>
-  <p>I'm here</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+        <p> {{user.is_authenticated}} </p>
+        {% if user.is_authenticated %}
+        <div class="container">
+            I'm here
+        </div>
+        {% else %}
+            <div class="promo">
+                <img class="d-block w-100" src="{% static 'img/main.jpg' %}" alt="promo">
+                <div class="carousel-caption d-md-block">
+                  <h1 class="promoText">Здесь вы можете найти любимую работу</h1>
+                </div>
+            </div>
+
+        {% endif %}
+
+{% endblock %}

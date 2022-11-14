@@ -4,8 +4,8 @@ from django.db.models import TextChoices
 
 
 class RoleChoices(TextChoices):
-    WORKER = 'worker', 'Работадатель'
-    EMPLOYER = 'employer', 'Соискатель'
+    APPLICANT = 'applicant', 'Соискатель'
+    EMPLOYER = 'employer', 'Работодатель'
 
 
 class Account(AbstractUser):
@@ -34,7 +34,8 @@ class Account(AbstractUser):
         null=False, 
         blank=False, 
         choices=RoleChoices.choices, 
-        verbose_name='Тип'
+        verbose_name='Тип',
+        default=RoleChoices.APPLICANT
     )
 
     USERNAME_FIELD = 'username'
