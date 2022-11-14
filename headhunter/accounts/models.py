@@ -18,6 +18,14 @@ class Account(AbstractUser):
         null=False
     )
 
+    phone = models.CharField(
+        verbose_name='Телефон',
+        blank=False,
+        null=False,
+        max_length=15,
+        default='9999999'
+    )
+
     avatar = models.ImageField(
         null=True,
         blank=True,

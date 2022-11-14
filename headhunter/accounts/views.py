@@ -37,9 +37,9 @@ class LoginView(TemplateView):
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
-        form = self.form(request.POST)
+        form = self.form_log(request.POST)
         if not form.is_valid():
-            return redirect('login')
+            return redirect('index')
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
         next = form.cleaned_data.get('next')
@@ -55,4 +55,4 @@ class LoginView(TemplateView):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('index')
