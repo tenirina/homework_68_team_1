@@ -4,13 +4,13 @@ from django.core.exceptions import ValidationError
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(required=True, label='Логин')
+    email = forms.CharField(required=True, label='Email')
     password = forms.CharField(required=True, label='Пароль', widget=forms.PasswordInput)
     next = forms.CharField(required=False, widget=forms.HiddenInput)
 
 
 class CustomUserCreationForm(forms.ModelForm):
-    username = forms.CharField(label='Логин', required=True)
+    email = forms.CharField(label='Email', required=True)
     first_name = forms.CharField(label='Имя', required=True)
     last_name = forms.CharField(label='Фамилия', required=True)
     password = forms.CharField(label='Пароль', strip=False, required=True, widget=forms.PasswordInput)
@@ -18,7 +18,7 @@ class CustomUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'password', 'password_confirm', 'first_name', 'last_name', 'email', 'avatar', 'birthday', 'worker')
+        fields = ('email', 'password', 'password_confirm', 'first_name', 'last_name', 'avatar', 'birthday', 'worker')
 
     def clean(self):
         cleaned_data = super().clean()

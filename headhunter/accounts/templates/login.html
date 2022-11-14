@@ -1,3 +1,5 @@
+{% load django_bootstrap5 %}
+
 <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -6,25 +8,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-                <form action="" method="POST">
+                 <form action="" method="POST">
                     {% csrf_token %}
-                    <div class="row mb-3">
-                        <label for="inputUsername" class="col-sm-2 col-form-label">Логин</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputUsername">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputPass" class="col-sm-2 col-form-label">Пароль</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPass">
-                        </div>
+                    <div class="form">
+                        {% bootstrap_form form_log %}
+                        {% bootstrap_button button_type="submit" button_class="btn-secondary" content='Войти' %}
                     </div>
                 </form>
-          </div>
-          <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-             <a class="btn btn-secondary" href="{% url 'index' %}">Войти</a>
           </div>
         </div>
       </div>

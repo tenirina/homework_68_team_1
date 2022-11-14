@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import TextChoices
 
+from accounts.managers import UserManager
+
 
 class RoleChoices(TextChoices):
     APPLICANT = 'applicant', 'Соискатель'
@@ -38,8 +40,10 @@ class Account(AbstractUser):
         default=RoleChoices.APPLICANT
     )
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    objects = UserManager()
 
     class Meta:
         verbose_name = 'Профиль'
