@@ -11,6 +11,10 @@ class RoleChoices(TextChoices):
 
 
 class Account(AbstractUser):
+    username = models.CharField(
+        max_length=150,
+    )
+
     email = models.EmailField(
         verbose_name='Электронная почта',
         unique=True,
@@ -22,8 +26,7 @@ class Account(AbstractUser):
         verbose_name='Телефон',
         blank=False,
         null=False,
-        max_length=15,
-        default='9999999'
+        max_length=15
     )
 
     avatar = models.ImageField(

@@ -13,7 +13,7 @@ class CustomUserCreationForm(forms.ModelForm):
     email = forms.CharField(label='Email', required=True)
     phone = forms.CharField(label='Телефон', required=True)
     first_name = forms.CharField(label='Имя', required=True)
-    last_name = forms.CharField(label='Фамилия', required=True)
+    last_name = forms.CharField(label='Фамилия')
     password = forms.CharField(label='Пароль', strip=False, required=True, widget=forms.PasswordInput)
     password_confirm = forms.CharField(label='Подтвердите пароль', strip=False, required=True, widget=forms.PasswordInput)
 
