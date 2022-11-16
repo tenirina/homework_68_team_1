@@ -48,7 +48,6 @@ class Resume(models.Model):
     )
     email = models.EmailField(
         verbose_name='Электронная почта',
-        unique=True,
         blank=False,
         null=False
     )
