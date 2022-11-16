@@ -13,13 +13,13 @@ class CustomUserCreationForm(forms.ModelForm):
     email = forms.CharField(label='Email', required=True)
     phone = forms.CharField(label='Телефон', required=True)
     first_name = forms.CharField(label='Имя', required=True)
-    last_name = forms.CharField(label='Фамилия')
+    last_name = forms.CharField(label='Фамилия', required=False)
     password = forms.CharField(label='Пароль', strip=False, required=True, widget=forms.PasswordInput)
     password_confirm = forms.CharField(label='Подтвердите пароль', strip=False, required=True, widget=forms.PasswordInput)
 
     class Meta:
         model = get_user_model()
-        fields = ('email', 'password', 'password_confirm', 'phone', 'first_name', 'last_name', 'avatar', 'birthday', 'worker')
+        fields = ('is_worker', 'email', 'password', 'password_confirm', 'phone', 'first_name', 'last_name', 'avatar', 'birthday')
 
     def clean(self):
         cleaned_data = super().clean()

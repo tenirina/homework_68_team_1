@@ -1,4 +1,4 @@
-var worker = document.getElementById('id_worker');
+var worker = document.getElementById('id_is_worker');
 var labels = document.getElementsByTagName('label');
 var forms = document.getElementsByTagName('form')
 var nameInput = document.getElementById('id_first_name')
@@ -15,7 +15,7 @@ function changeFirstName (){
     var firstNameLable = findLableForControl('id_first_name')
     var lastNameLable = findLableForControl('id_last_name')
     var birthDateLable = findLableForControl('id_birthday')
-    if (worker.value === 'employer') {
+    if (worker) {
         firstNameLable.innerText = 'Наименование компании' 
         lastNameLable.parentElement.style.display = 'none'
         nameInput.placeholder = 'Наименование компании'

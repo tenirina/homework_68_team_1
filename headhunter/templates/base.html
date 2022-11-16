@@ -32,19 +32,12 @@
                 {% if user.is_authenticated %}
                     <span class="navbar-nav"><a class="nav-link " href="{% url 'logout' %}">Выйти</a></span>
                 {% else %}
-                    <span class="navbar-nav">
-                        <a class="nav-link" data-bs-toggle="modal" href="#login" role="button">Войти</a>
-                    </span>
-                    <span class="navbar-nav">
-                        <a class="nav-link" data-bs-toggle="modal" href="#register" role="button">Регистрация</a>
-                    </span>
+                    {% block modal %}{% endblock %}
+
                 {% endif %}
             </div>
         </div>
     </nav>
-    {% include 'login.html' %}
-    {% include 'register.html' %}
-
 
     {% block content%}{% endblock %}
 

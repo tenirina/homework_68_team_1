@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block modal %}
+    <span class="navbar-nav">
+        <a class="nav-link" data-bs-toggle="modal" href="#login" role="button">Войти</a>
+    </span>
+    <span class="navbar-nav">
+        <a class="nav-link" data-bs-toggle="modal" href="#register" role="button">Регистрация</a>
+    </span>
+    {% include 'login.html' %}
+    {% include 'register.html' %}
+{% endblock %}
 
 {% block content %}
-        <p> {{user.is_authenticated}} </p>
         {% if user.is_authenticated %}
         <div class="container">
             I'm here
@@ -15,5 +24,4 @@
                 </div>
             </div>
         {% endif %}
-
 {% endblock %}

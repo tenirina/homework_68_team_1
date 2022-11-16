@@ -2,11 +2,10 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
-from django.contrib.auth.models import User
+from django.views.generic import TemplateView, CreateView, DetailView
 
 from accounts.forms import LoginForm, CustomUserCreationForm
+from accounts.models import Account
 
 
 class RegisterView(CreateView):
@@ -16,10 +15,12 @@ class RegisterView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
+        print('inncnnc')
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            print(user)
+            return redirect('user_detail', pk=user.pk)
         context = {}
         context['form'] = form
         return self.render_to_response(context)
@@ -45,14 +46,21 @@ class LoginView(TemplateView):
         next = form.cleaned_data.get('next')
         user = authenticate(request, email=email, password=password)
         if not user:
-            form.add_error(None, 'Incorrect password or email')
-            return render(request, 'index.html', {'form': form})
+            form.add_error(None, 'Пользователь или пароль неправильно введены!')
+            return redirect('index')
         login(request, user)
         if next:
             return redirect(next)
-        return redirect('index')
+        user = Account.objects.filter(email=form.cleaned_data.get('email'))[0]
+        return redirect('user_detail', pk=user.pk)
 
 
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+
+class ProfileView(LoginRequiredMixin, DetailView):
+    model = get_user_model()
+    template_name = 'user_detail.html'
+    context_object_name = 'user_obj'

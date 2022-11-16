@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container">
+        <h3>Персональная страница {% if user_obj.is_worker %} соискателя {% else %} работодателя {% endif %}</h3>
+        <div class="row">
+            <div class="col-3">
+                {% if user_obj.avatar %}
+                    <img class="avatar_img" src="{{ user_obj.avatar.url }}" alt="user picture">
+                {% else %}
+                    <img class="avatar_img" src="http://dummyimage.com/150" alt="user picture">
+                {% endif %}
+            </div>
+            <div class="col-7">
+                {% if user_obj.is_worker %}
+                    <p>Фамилия: {{ user_obj.last_name }}</p>
+                    <p>Имя: {{ user_obj.first_name }}</p>
+                {% else %}
+                    <p>Наименовани компании: {{ user_obj.first_name }}</p>
+                {% endif %}
+                <p>Email: {{ user_obj.email }}</p>
+                <p>Телефон: {{ user_obj.phone }}</p>
+                {% if user_obj.is_worker %}
+                    <p>Дата рождения: {{ user_obj.birthday }}</p>
+                {% else %}
+                    <p>Дата основания компании: {{ user_obj.birthday }}</p>
+                {% endif %}
+            </div>
+
+        </div>
+        <h3 class="text-center clear">Resume:</h3>
+
+    </div>
+
+{% endblock %}
