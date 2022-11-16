@@ -35,3 +35,10 @@ class CustomUserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ('first_name', 'last_name', 'email', 'avatar', 'phone', 'birthday')
+        labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'email': 'Email', 'avatar': '', 'phone': 'Телефон', 'birthday': 'День рождения'}

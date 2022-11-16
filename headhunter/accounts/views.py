@@ -1,10 +1,10 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator
-from django.shortcuts import redirect, render
-from django.views.generic import TemplateView, CreateView, DetailView
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 
-from accounts.forms import LoginForm, CustomUserCreationForm
+from accounts.forms import LoginForm, CustomUserCreationForm, UserUpdateForm
 from accounts.models import Account
 
 
@@ -15,11 +15,9 @@ class RegisterView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
-        print('inncnnc')
         if form.is_valid():
             user = form.save()
             login(request, user)
-            print(user)
             return redirect('user_detail', pk=user.pk)
         context = {}
         context['form'] = form
@@ -64,3 +62,16 @@ class ProfileView(LoginRequiredMixin, DetailView):
     model = get_user_model()
     template_name = 'user_detail.html'
     context_object_name = 'user_obj'
+
+
+class UserChangeView(UpdateView):
+    model = get_user_model()
+    form_class = UserUpdateForm
+    template_name = 'user_update.html'
+    context_object_name = 'user_obj'
+
+    def has_permission(self):
+        return super().has_permission() or self.get_object() == self.request.user
+
+    def get_success_url(self):
+        return reverse('user_detail', kwargs={'pk': self.object.pk})
