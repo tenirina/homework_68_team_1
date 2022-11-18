@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Experience(models.Model):
 
     company_name = models.CharField(

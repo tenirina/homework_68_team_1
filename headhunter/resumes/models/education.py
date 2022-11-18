@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Education(models.Model):
 
     place_of_education = models.CharField(
