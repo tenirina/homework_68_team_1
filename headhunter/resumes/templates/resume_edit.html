@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+{% block title%}
+Create Resume
+{% endblock %}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        {% include 'partial/resume_form.html' %}
+    </div>
+</form>
+{% endblock %}
