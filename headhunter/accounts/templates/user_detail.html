@@ -10,10 +10,8 @@
                 <h3>Персональная страница {% if user_obj.is_worker %} соискателя {% else %} работодателя {% endif %}</h3>
             </div>
             <div class="col-3">
-                <form action="{% url 'user_update' user_obj.pk %}" method="post" enctype="multipart/form-data">
-                     {% csrf_token %}
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#update">Change</button>
-                </form>
+                <a class="btn btn-secondary" data-bs-toggle="modal" href="#update" role="button">Редактировать</a>
+                {% include 'user_update.html' %}
             </div>
         </div>
         <div class="row">
@@ -42,6 +40,6 @@
         </div>
         <h3 class="text-center clear">Resume:</h3>
         <p>здесь будет резюме </p>
-         {% include 'user_update.html' %}
+        {% include 'user_update.html' %}
     </div>
 {% endblock %}

@@ -38,6 +38,7 @@ class CustomUserCreationForm(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
+
     class Meta:
         model = get_user_model()
         fields = ('first_name', 'last_name', 'email', 'avatar', 'phone', 'birthday')

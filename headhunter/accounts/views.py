@@ -25,30 +25,31 @@ class RegisterView(CreateView):
             return redirect('user_detail', pk=user.pk)
         context = {}
         context['form'] = form
-        return self.render_to_response(context)
+        return redirect('index')
 
 
-@csrf_exempt
-def login_view(request):
-    data = json.loads(request.body)
-    email = data['email']
-    password = data['password']
-    if email and password:
-        user_auth = authenticate(request, email=email, password=password)
-        if user_auth:
-            login(request, user_auth)
-            user = Account.objects.filter(email=email)[0]
-            response = JsonResponse({'answer': user.pk})
-            response.status_code = 200
+class LoginView(View):
+
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        email = data['email']
+        password = data['password']
+        if email and password:
+            user_auth = authenticate(request, email=email, password=password)
+            if user_auth:
+                login(request, user_auth)
+                user = Account.objects.filter(email=email)[0]
+                response = JsonResponse({'answer': user.pk})
+                response.status_code = 200
+                return response
+            response_data = {'error': 'Пользователь или пароль не валидны!'}
+            response = JsonResponse(response_data)
+            response.status_code = 400
             return response
-        response_data = {'error': 'Пользователь или пароль не валидны!'}
+        response_data = {'error': 'Введите логин и пароль!'}
         response = JsonResponse(response_data)
         response.status_code = 400
         return response
-    response_data = {'error': 'Введите логин и пароль!'}
-    response = JsonResponse(response_data)
-    response.status_code = 400
-    return response
 
 
 def logout_view(request):
@@ -56,10 +57,11 @@ def logout_view(request):
     return redirect('index')
 
 
-class ProfileView(LoginRequiredMixin, DetailView):
+class ProfileView(LoginRequiredMixin, UpdateView):
     model = get_user_model()
     template_name = 'user_detail.html'
     context_object_name = 'user_obj'
+    form_class = UserUpdateForm
 
 
 class UserChangeView(UpdateView):
