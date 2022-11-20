@@ -7,15 +7,19 @@
             <h5 class="modal-title" id="exampleModalLabel">Аутентификация</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-                 <form action="{% url 'login' %}" method="POST">
-                    {% csrf_token %}
-                    <div class="form">
-                        {% bootstrap_form form_log %}
-                        {% bootstrap_button button_type="submit" button_class="btn-secondary" content='Войти' %}
-                    </div>
-                </form>
-          </div>
+          <div id="alert" class="alert alert-danger d-none" role="alert"></div>
+          <form action="{% url 'login' %}" method="POST" enctype="multipart/form-data">
+              <div class="modal-body">
+                {% csrf_token %}
+                <div class="form">
+                    {% bootstrap_form form_log %}
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="submit" class="btn btn-primary">Вход</button>
+              </div>
+          </form>
         </div>
       </div>
     </div>

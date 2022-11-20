@@ -4,6 +4,7 @@ let nameInput = document.getElementById('id_first_name');
 let birthDateInput = document.getElementById('id_birthday');
 let worker = document.getElementById('id_is_worker');
 
+
 function findLableForControl(name) {
     for( var i = 0; i < labels.length; i++ ) {
        if (labels[i].htmlFor == name)
@@ -29,3 +30,6 @@ worker.addEventListener('change', (event) => {
         birthDateInput.placeholder = 'Дата основания компании';
     }
 })
+
+
+

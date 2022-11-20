@@ -8,16 +8,18 @@
             <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-                 <form id="form" action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form">
-                        {% bootstrap_form form %}
-                        {% bootstrap_button button_type="submit" button_class="btn-secondary" content='Регистрация' %}
-                    </div>
-                </form>
-          </div>
-
+          <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+              <div class="modal-body">
+                {% csrf_token %}
+                <div class="form">
+                    {% bootstrap_form form %}
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Регистрация</button>
+              </div>
+          </form>
         </div>
       </div>
 </div>
