@@ -17,26 +17,6 @@ function getCookie(name) {
     return cookieValue;
 }
 
-// $(function($){
-//     $('#login_modal').submit(function(event){
-//         event.preventDefault();
-//         console.log(this)
-//         console.log('hello')
-//         $.ajax({
-//             headers: {'X-CSRFToken': getCookie('csrftoken')},
-//             method: 'POST',
-//             url: this.action,
-//             data: $(this).serialize(),
-//             success: function(response){
-//                 console.log('hfhhfhf')
-//             },
-//             error: function(response){
-//                 console.log('error')
-//             }
-//         })
-//     })
-// })
-
 function onClickLogin(event){
     event.preventDefault();
     let email = document.getElementById('id_email').value;
