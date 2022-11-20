@@ -38,40 +38,17 @@ def login_view(request):
         if user_auth:
             login(request, user_auth)
             user = Account.objects.filter(email=email)[0]
-            print(user)
-            # response_data = {'user': user}
-            # print(response_data)
-            response = JsonResponse({'answer': user.pk, 'status': 200})
-            print(response)
+            response = JsonResponse({'answer': user.pk})
+            response.status_code = 200
             return response
-        print('NOT CORRECT')
-        response_data = {'error': 'Пользователь или пароль не валидны!', 'status': 400}
+        response_data = {'error': 'Пользователь или пароль не валидны!'}
         response = JsonResponse(response_data)
+        response.status_code = 400
         return response
-    print('NOT DATA')
-    response_data = {'error': 'Введите логин и пароль!', 'status': 400}
+    response_data = {'error': 'Введите логин и пароль!'}
     response = JsonResponse(response_data)
+    response.status_code = 400
     return response
-
-        # if not form.is_valid():
-        #     response_data = {'error': 'Пользователь и пароль обязательные поля!', 'status': 400}
-        #     response = JsonResponse(response_data)
-        #     response.status_code = 200
-        #     return response
-        # email = form.cleaned_data.get('email')
-        # password = form.cleaned_data.get('password')
-        # next = form.cleaned_data.get('next')
-        # user = authenticate(request, email=email, password=password)
-        # if not user:
-        #     response_data = {'error': 'Пользователь или пароль не валидны!', 'status': 400}
-        #     response = JsonResponse(response_data)
-        #     response.status_code = 200
-        #     return response
-        # login(request, user)
-        # if next:
-        #     return redirect(next)
-        # user = Account.objects.filter(email=form.cleaned_data.get('email'))[0]
-        # return redirect('user_detail', pk=user.pk)
 
 
 def logout_view(request):

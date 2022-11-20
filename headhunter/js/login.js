@@ -55,6 +55,9 @@ function onClickLogin(event){
             window.location.replace(url)
         },
         error: function(response){
+            if (response.status === 400){
+                $('#alert').text(response.responseJSON.error).removeClass('d-none')
+            }
             console.log('error')
         }
     })
