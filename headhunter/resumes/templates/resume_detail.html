@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block title%}
+Create Resume
+{% endblock %}
+{% block content %}
+    <p>{{resume.resume_title}}</p>
+    <p>{{resume.author.first_name}}</p>
+    <p>{{resume.author.last_name}}</p>
+    <img class="avatar_img" src="{{ resume.author.avatar.url }}" alt="user picture">
+    <p>{{resume.salary}}</p>
+    <p>{{resume.profession}}</p>
+    <p>{{resume.phone}}</p>
+    <p>{{resume.about_yourself}}</p>
+    <p>{{resume.telegram}}</p>
+{% endblock %}
