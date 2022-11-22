@@ -7,7 +7,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 
 
-
 class ResumeCreateView(CreateView):
     template_name = 'resume_create.html'
     form_class = ResumeForm

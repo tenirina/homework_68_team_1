@@ -8,5 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('webapp.urls')),
     path('auth/', include('accounts.urls')),
-    path('resumes/', include('resumes.urls'))
+    path('resumes/', include('resumes.urls')),
+    path('vacancies/', include('vacancies.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

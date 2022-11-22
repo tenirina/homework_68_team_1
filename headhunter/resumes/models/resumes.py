@@ -15,14 +15,14 @@ class Resume(models.Model):
         to=get_user_model(),
         verbose_name='Автор резюме',
         related_name='author',
-        null=True,
+        null=False,
         blank=False,
         on_delete=models.CASCADE
     )
     resume_title = models.CharField(
         max_length=300,
         verbose_name='Наименование должности',
-        null=True,
+        null=False,
         blank=False
     )
     salary = models.DecimalField(

@@ -1,9 +1,11 @@
 from django.contrib import admin
 from resumes.models import Resume, Experience, Education
 
+
 class ExperienceInline(admin.StackedInline):
     model = Experience
     fields = ('company_name', 'position', 'start_work', 'end_work')
+
 
 class EducationInline(admin.StackedInline):
     model = Education
