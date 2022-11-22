@@ -1,0 +1,33 @@
+{% load django_bootstrap5 %}
+
+<div class="modal fade" id="res_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Создание резюме</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="alert" class="alert alert-danger d-none" role="alert"></div>
+          <form action="{% url 'resume_create' %}" method="POST" enctype="multipart/form-data">
+              <div class="modal-body">
+                {% csrf_token %}
+                <div class="form">
+                    {% bootstrap_form form_res_create %}
+                </div>
+                <div>
+                    <a data-bs-toggle="modal" href="#education_create" role="button">Добавить место обучения</a>
+                </div>
+                <div>
+                    <a data-bs-toggle="modal" href="#experience_create" role="button">Добавить опыт работы</a>
+                </div>
+                {% include 'partial/experience_form.html' %}
+                {% include 'partial/education_form.html' %}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" id="submit" class="btn btn-primary">Создать</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>

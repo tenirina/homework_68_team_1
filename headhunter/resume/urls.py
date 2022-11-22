@@ -1,5 +1,5 @@
 from django.urls import path
-from resumes.views import ResumeCreateView, ResumeEditView, ResumeDetailView, EducationCreateView, ExperienceCreateView
+from .views import ResumeCreateView, ResumeEditView, ResumeDetailView, EducationCreateView, ExperienceCreateView
 
 urlpatterns = [
     path('create/', ResumeCreateView.as_view(), name='resume_create'),

@@ -26,7 +26,7 @@ class Experience(models.Model):
         blank=False
     )
     resume = models.ForeignKey(
-        to='resumes.Resume',
+        to='resume.Resume',
         related_name='resume_exp',
         null=False,
         blank=False,

@@ -1,10 +1,11 @@
-from resumes.forms import ResumeForm, EducationForm, ExperienceForm
-from resumes.models import Resume, Education, Experience
+from .forms import ResumeForm, EducationForm, ExperienceForm
+from .models import Resume, Education, Experience
 from django.views.generic import UpdateView, CreateView, DeleteView, DetailView
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+
 
 
 class ResumeCreateView(CreateView):
@@ -15,6 +16,10 @@ class ResumeCreateView(CreateView):
     def get(self, request, *args, **kwargs):
         resume = Resume.objects.create(author=request.user)
         return redirect('resume_edit', pk=resume.pk)
+
+    def post(self, request, *args, **kwargs):
+        print('dvs')
+        return super().post(request, *args, **kwargs)
 
 
 class ResumeEditView(UpdateView):

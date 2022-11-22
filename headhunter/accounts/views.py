@@ -1,4 +1,6 @@
+import imp
 import json
+from multiprocessing import context
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponse, HttpResponseNotAllowed
@@ -9,7 +11,9 @@ from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 
 from accounts.forms import LoginForm, CustomUserCreationForm, UserUpdateForm
+from resume.forms import ResumeForm
 from accounts.models import Account
+from resume.models import Resume
 
 
 class RegisterView(CreateView):
@@ -62,6 +66,14 @@ class ProfileView(LoginRequiredMixin, UpdateView):
     template_name = 'user_detail.html'
     context_object_name = 'user_obj'
     form_class = UserUpdateForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_res_create'] = ResumeForm
+        context['form_edu'] = ResumeForm
+        context['form_exp'] = ResumeForm
+        context['resumes'] = Resume.objects.filter(author=context['user_obj'].id)
+        return context
 
 
 class UserChangeView(UpdateView):

@@ -26,7 +26,7 @@ class Education(models.Model):
         blank=False
     )
     resume = models.ForeignKey(
-        to='resumes.Resume',
+        to='resume.Resume',
         related_name='resume_edu',
         null=False,
         blank=False,

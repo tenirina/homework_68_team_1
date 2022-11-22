@@ -1,3 +1,4 @@
+from operator import mod
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import TextChoices
@@ -14,15 +15,15 @@ class Resume(models.Model):
     author = models.ForeignKey(
         to=get_user_model(),
         verbose_name='Автор резюме',
-        related_name='author',
-        null=False,
+        related_name='author_resume',
+        null=True,
         blank=False,
         on_delete=models.CASCADE
     )
     resume_title = models.CharField(
         max_length=300,
         verbose_name='Наименование должности',
-        null=False,
+        null=True,
         blank=False
     )
     salary = models.DecimalField(
@@ -73,6 +74,10 @@ class Resume(models.Model):
         null=True,
         blank=False,
         verbose_name='Facebook'
+    )
+    publication = models.BooleanField(
+        verbose_name='Будет опубликовано',
+        default=False,
     )
     created_at = models.DateTimeField(
         verbose_name='Дата создания',

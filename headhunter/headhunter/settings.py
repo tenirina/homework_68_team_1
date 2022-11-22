@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'django_bootstrap5',
     'webapp',
-    'resumes',
+    'resume',
     'vacancies'
 ]
 

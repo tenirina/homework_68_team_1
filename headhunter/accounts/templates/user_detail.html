@@ -36,13 +36,14 @@
                     <p>Дата основания компании: {{ user_obj.birthday }}</p>
                 {% endif %}
             </div>
-        </div>
-        <div class="col-3">
-            <a class="btn btn-secondary" data-bs-toggle="modal" href="#update" role="button">Создать вакансию</a>
-            {% include 'user_update.html' %}
+
         </div>
         <h3 class="text-center clear">Resume:</h3>
-        <p>здесь будет резюме </p>
-        {% include 'user_update.html' %}
+        {% for el in resumes %}
+            <a href='#res_create'>{{el}}</a>
+        {% endfor %}
+        <a class="btn btn-secondary" data-bs-toggle="modal" href="#res_create" role="button">Добавить резюме</a>
+
+        {% include 'resume_create.html' %}
     </div>
 {% endblock %}

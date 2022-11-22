@@ -1,5 +1,5 @@
 from django.contrib import admin
-from resumes.models import Resume, Experience, Education
+from .models import Resume, Experience, Education
 
 
 class ExperienceInline(admin.StackedInline):
