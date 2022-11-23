@@ -93,3 +93,22 @@ class ExperienceCreateView(CreateView):
         )
         return HttpResponse(status=201)
 
+
+class EducationCreateView(CreateView):
+    form_class = EducationForm
+
+    def post(self, request, *args, **kwargs):
+        resume = Resume.objects.get(pk=kwargs['pk'])
+        print(request.POST)
+        place_of_education = request.POST.get('place_of_education')
+        specialization = request.POST.get('specialization')
+        start_education = request.POST.get('start_education')
+        end_education = request.POST.get('end_education')
+        Experience.objects.create(
+            company_name=place_of_education,
+            position=specialization,
+            start_work=start_education,
+            end_work=end_education,
+            resume=resume,
+        )
+        return HttpResponse(status=201)
