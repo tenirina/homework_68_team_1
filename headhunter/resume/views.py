@@ -79,6 +79,7 @@ class ExperienceCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         resume = Resume.objects.get(pk=kwargs['pk'])
+        print(request.POST)
         company_name = request.POST.get('company_name')
         position = request.POST.get('position')
         start_work = request.POST.get('start_work')
@@ -92,22 +93,3 @@ class ExperienceCreateView(CreateView):
         )
         return HttpResponse(status=201)
 
-
-class EducationCreateView(CreateView):
-    from_class = EducationForm
-
-    def post(self, request, *args, **kwargs):
-        resume = Resume.objects.get(pk=kwargs['pk'])
-        place_of_education = request.POST.get('place_of_education')
-        specialization = request.POST.get('specialization')
-        start_education = request.POST.get('start_education')
-        end_education = request.POST.get('end_education')
-        print(start_education)
-        Education.objects.create(
-            place_of_education=place_of_education,
-            specialization=specialization,
-            start_education=start_education,
-            end_education=end_education,
-            resume=resume,
-        )
-        return HttpResponse(status=201)

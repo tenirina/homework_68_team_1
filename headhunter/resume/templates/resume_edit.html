@@ -19,12 +19,11 @@
             <div>
                 <a class="btn btn-outline-secondary" data-bs-toggle="modal" href="#experience_create" role="button">Добавить опыт работы</a>
             </div>
-            {% if experience %}
-                {% for el in experience %}
-                    <p>Experience</p>
-                {% endfor %}
-            {% else %}
-            {% endif %}
+
+                    <div id="experience_card">
+
+                    </div>
+
             <br>
             <button type="submit" id="submit" class="btn btn-secondary">Создать резюме</button>
             {% include 'partial/experience_form.html' %}
