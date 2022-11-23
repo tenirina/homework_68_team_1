@@ -1,3 +1,5 @@
+from rest_framework.views import APIView
+
 from .forms import ResumeForm, EducationForm, ExperienceForm
 from .models import Resume, Education, Experience
 from django.views.generic import UpdateView, CreateView, DeleteView, DetailView
@@ -5,7 +7,6 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-
 
 
 class ResumeCreateView(CreateView):
@@ -30,7 +31,7 @@ class ResumeEditView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = ResumeForm(instance=self.object)
+        context['form_res_create'] = ResumeForm(instance=self.object)
         context['form_exp'] = ExperienceForm()
         context['form_edu'] = EducationForm()
         return context
@@ -72,6 +73,7 @@ class ResumeDetailView(DetailView):
         context['education'] = education
         return context
 
+
 class ExperienceCreateView(CreateView):
     form_class = ExperienceForm
 
@@ -100,6 +102,7 @@ class EducationCreateView(CreateView):
         specialization = request.POST.get('specialization')
         start_education = request.POST.get('start_education')
         end_education = request.POST.get('end_education')
+        print(start_education)
         Education.objects.create(
             place_of_education=place_of_education,
             specialization=specialization,

@@ -30,6 +30,7 @@
                     </li>
                 </ul>
                 {% if user.is_authenticated %}
+                    <span class="navbar-nav"><a class="nav-link " href="{% url 'user_detail' user.pk %}">Профиль</a></span>
                     <span class="navbar-nav"><a class="nav-link " href="{% url 'logout' %}">Выйти</a></span>
                 {% else %}
                     {% block modal %}{% endblock %}
@@ -46,6 +47,8 @@
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/login.js' %}"></script>
+    <script src="{% static 'js/experience.js' %}"></script>
+
 
 </body>
 </html>

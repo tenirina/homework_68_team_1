@@ -1,6 +1,7 @@
 from django import forms
-from .models import Experience, Resume, Education
+from django.forms import widgets
 
+from .models import Experience, Resume, Education
 
 
 class ResumeForm(forms.ModelForm):
@@ -12,11 +13,16 @@ class ResumeForm(forms.ModelForm):
         }
         fields = ('resume_title', 'salary', 'profession', 'phone', 'email', 'about_yourself', 'telegram', 'linkedin', 'facebook', 'publication')
 
+
 class ExperienceForm(forms.ModelForm):
+    start_work = forms.DateField(input_formats=['%d/%m/%Y'], widget=widgets.DateInput)
+
+
 
     class Meta:
         model = Experience
         fields = ('company_name', 'position', 'start_work', 'end_work')
+
 
 class EducationForm(forms.ModelForm):
 

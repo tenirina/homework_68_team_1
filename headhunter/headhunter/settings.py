@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'webapp',
     'resume',
-    'vacancies'
+    'vacancies',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

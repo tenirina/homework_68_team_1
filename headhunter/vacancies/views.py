@@ -11,5 +11,5 @@ class VacancyCreateView(CreateView):
     model = Vacancy
 
     def get(self, request, *args, **kwargs):
-        vacancy = Vacancy.objects.create(author=request.user)
-        return redirect('vacancy', pk=vacancy.pk)
+        # vacancy = Vacancy.objects.create(author=request.user)
+        return redirect('index.html')
