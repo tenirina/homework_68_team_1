@@ -28,7 +28,7 @@ function onClickAdd(event){
     event.preventDefault();
     createCard();
     data = {'company_name': company_name, 'position': position, 'start_work': start_work, 'end_work': end_work};
-    url = 'http://localhost:8000/resume/15/';
+    url = urlBase;
     $.ajax({
         headers: {'X-CSRFToken': getCookie('csrftoken')},
         method: 'POST',
@@ -36,9 +36,9 @@ function onClickAdd(event){
         data: data,
         success: function(response){
             console.log(response.answer)
-            let url_fun = 'http://localhost:8000/resume/14/edit/'
+            let url_fun = url + '/resume/' +response.answer.pk +'/edit'
             console.log(url_fun)
-            window.location.replace(url)
+            window.location.replace(url_fun)
         },
         error: function(response){
             if (response.status === 400){
