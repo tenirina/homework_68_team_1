@@ -5,7 +5,7 @@ from resume.models.resumes import ProfessionChoices
 
 
 class Vacancy(models.Model):
-    author = models.ForeignKey(to=get_user_model(), verbose_name='Работодатель', related_name='author', null=False, blank=False, on_delete=models.CASCADE)
+    author = models.ForeignKey(to=get_user_model(), verbose_name='Работодатель', related_name='author_vacancy', null=False, blank=False, on_delete=models.CASCADE)
     title = models.CharField(verbose_name='Вакансия', max_length=100, null=False, blank=False)
     salary = models.DecimalField(verbose_name='Заработная плата', max_digits=10, decimal_places=2, null=False, blank=False)
     description = models.TextField(verbose_name='Описание вакансии', null=True)
