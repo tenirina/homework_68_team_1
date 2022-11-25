@@ -15,7 +15,7 @@ class Resume(models.Model):
     author = models.ForeignKey(
         to=get_user_model(),
         verbose_name='Автор резюме',
-        related_name='author',
+        related_name='author_resume',
         null=True,
         blank=False,
         on_delete=models.CASCADE
