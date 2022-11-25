@@ -14,3 +14,9 @@ class Vacancy(models.Model):
     experience_before = models.DecimalField(verbose_name='Стаж до', max_digits=10, decimal_places=2, null=False, blank=False)
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Дата редактирования', auto_now=True)
+
+class ResponseToVacancy(models.Model):
+    author = models.ForeignKey(to=get_user_model(), verbose_name='Отклик пользователя', related_name='responces_to_vacancy', null=False, blank=False, on_delete=models.CASCADE)
+    resume = models.ForeignKey(verbose_name='Резюме', to='resume.Resume', related_name='responces_to_vacancy', null=False, blank=False, on_delete=models.CASCADE)
+    vacancy = models.ForeignKey(to='Vacancy', verbose_name='Вакансия', related_name='responces_to_vacancy', null=False, blank=False, on_delete=models.CASCADE)
+
