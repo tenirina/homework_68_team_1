@@ -29,8 +29,8 @@
             {% else %}
                 {% for el in resumes %}
                     <div>
-                        <h4>el.resume_title</h4>
-                        <p>el.author</p>
+                        <h4>{{el.resume_title}}</h4>
+                        <p>{{el.author}}</p>
                         <a href="{% url 'resume_detail' el.pk %}" role="button">Детальнее</a>
                     </div>
                 {% endfor %}

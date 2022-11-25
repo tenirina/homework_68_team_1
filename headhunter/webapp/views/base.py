@@ -21,10 +21,9 @@ class IndexView(TemplateView):
         if self.request.user.is_authenticated:
             user = self.request.user
             if user.is_worker:
-                context['vacancies'] = 'Help'
+                context['vacancies'] = 'Help me!'
             else:
-                context['resumes'] = 'Help'
-                resumes = Resume.objects.all()
+                context['resumes'] = Resume.objects.all()
         return context
 
     def get(self, request, *args, **kwargs):
