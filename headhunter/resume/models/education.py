@@ -15,12 +15,12 @@ class Education(models.Model):
         null=False,
         verbose_name='Специальность'
     )
-    start_education = models.DateField(
+    start_education = models.IntegerField(
         verbose_name='Дата начала обучения',
         null=False,
         blank=False
     )
-    end_education = models.DateField(
+    end_education = models.IntegerField(
         verbose_name='Дата окончания обучения',
         null=False,
         blank=False

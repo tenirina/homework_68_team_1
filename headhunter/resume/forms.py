@@ -15,9 +15,6 @@ class ResumeForm(forms.ModelForm):
 
 
 class ExperienceForm(forms.ModelForm):
-    start_work = forms.DateField(input_formats=['%d/%m/%Y'], widget=widgets.DateInput)
-
-
 
     class Meta:
         model = Experience

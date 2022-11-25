@@ -48,6 +48,9 @@ class ResumeEditView(UpdateView):
             resume.telegram = request.POST['telegram']
             resume.linkedin = request.POST['linkedin']
             resume.facebook = request.POST['facebook']
+            if len(resume.resume_title) == 0:
+                del resume
+                return redirect('user_detail', pk=request.user.pk)
             resume.save()
             return redirect('resume_detail', pk=resume.pk)
         context = {}

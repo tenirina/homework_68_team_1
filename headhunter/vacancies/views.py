@@ -63,8 +63,8 @@ class VacancyEditView(UpdateView):
         context['form'] = VacancyForm(instance=self.object)
         return context
 
-    def get_success_url(self, request):
-        return reverse('user_detail', pk=request.user.pk)
+    def get_success_url(self):
+        return reverse('vacancy_detail', kwargs={'pk': self.object.pk})
 
 
 class VacancyDetailView(DetailView):

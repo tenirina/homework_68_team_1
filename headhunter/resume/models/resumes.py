@@ -27,7 +27,7 @@ class Resume(models.Model):
         blank=False
     )
     salary = models.DecimalField(
-        max_digits=10,
+        max_digits=12,
         verbose_name='Заработная плата',
         decimal_places=2,
         null=True,

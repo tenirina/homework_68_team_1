@@ -1,11 +1,11 @@
 {% extends 'base.html'%}
 {% load django_bootstrap5 %}
 {% block title%}
-    Create Vacansies
+    Update vacancy
 {% endblock %}
 {% block content %}
 <div class="container">
-    <form action="{% url 'vacancy_create' %}" method="POST">
+    <form action="{% url 'vacancy_edit' vacancy.pk %}" method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
         <button type="submit" class="btn btn-secondary">Обновить вакансию</button>

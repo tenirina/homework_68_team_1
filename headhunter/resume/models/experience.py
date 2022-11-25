@@ -15,13 +15,13 @@ class Experience(models.Model):
         null=False,
         verbose_name='Должность'
     )
-    start_work = models.DateField(
-        verbose_name='Дата начала работы',
+    start_work = models.IntegerField(
+        verbose_name='Год начала работы',
         null=False,
         blank=False
     )
-    end_work = models.DateField(
-        verbose_name='Дата окончания работы',
+    end_work = models.IntegerField(
+        verbose_name='Год окончания работы',
         null=False,
         blank=False
     )

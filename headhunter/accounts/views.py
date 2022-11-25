@@ -14,6 +14,7 @@ from accounts.forms import LoginForm, CustomUserCreationForm, UserUpdateForm
 from resume.forms import ResumeForm
 from accounts.models import Account
 from resume.models import Resume
+from vacancies.models.vacancies import Vacancy
 
 
 class RegisterView(CreateView):
@@ -69,10 +70,8 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form_res_create'] = ResumeForm
-        context['form_edu'] = ResumeForm
-        context['form_exp'] = ResumeForm
         context['resumes'] = Resume.objects.filter(author=context['user_obj'].id)
+        context['vacancies'] = Vacancy.objects.filter(author=context['user_obj'].id).order_by('-updated_at')
         return context
 
 

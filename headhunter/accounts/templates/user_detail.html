@@ -38,19 +38,26 @@
             </div>
 
         </div>
-        {% if user_obj.is_worker %}
-            <a class="btn btn-secondary" href="{% url 'resume_create' %}" role="button">Добавить резюме</a>
+        {% if user_obj.is_worker %}            
             <h3 class="text-center clear">Резюме:</h3>
+            <a class="btn btn-secondary" href="{% url 'resume_create' %}" role="button">Добавить резюме</a>
+		    {% for el in resumes %}
+                <br>
+                <a href="{% url 'resume_edit' el.pk %}">{{el}}</a>
+            {% endfor %}
+
         {% else %}
              <a class="btn btn-secondary" href="{% url 'vacancy_create' %}" role="button">Добавить вакансию</a>
-             <h3 class="text-center clear">Вакансии:</h3>
+             <h3 class="text-center clear">Вакансии созданные пользователем:</h3>
+            {% if vacancies %}
+                {% for el in vacancies %}
+                    {% include 'partial/card_vacancy.html' %}
+                {% endfor %}
+            {% else %}
+                <h4>Вы еще не добавили ни одной вакансии</h4>
+            {% endif %}
         {% endif %}
 
-        {% for el in resumes %}
-            <a href='#res_create'>{{el}}</a>
-        {% endfor %}
-        <a class="btn btn-secondary" data-bs-toggle="modal" href="#res_create" role="button">Добавить резюме</a>
-
-        {% include 'resume_create.html' %}
+      
     </div>
 {% endblock %}

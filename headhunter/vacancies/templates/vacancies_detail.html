@@ -3,5 +3,27 @@
 {% block title %} Profile {% endblock %}
 
 {% block content %}
-{{vacancy.title}}
+<div class="container">
+        <h2>{{vacancy.title}}</h2>
+        <h4 class="fs-5 col-md-8">{{vacancy.get_profession_display}}</h4>
+
+        <hr class="col-3 col-md-2 mb-5">
+
+        <div class="row g-5">
+          <div class="col-md-6">
+            <h2>Основные обязанноси:  </h2>
+            <p>{{vacancy.description}}</p>
+          </div>
+
+          <div class="col-md-6">
+            <h2> {{vacancy.salary}}$ </h2>
+            <p>Требования к должности.</p>
+            <ul class="icon-list ps-0">
+              <li class="d-flex align-items-start mb-1">Опыт работы {{vacancy.experience_from}} - {{vacancy.experience_before}} лет</li>
+              <li class="d-flex align-items-start mb-1">Дата обновления {{ vacancy.updated_at }}</li>
+            </ul>
+          </div>
+        </div>
+
+</div>
 {%endblock%}

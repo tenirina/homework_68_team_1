@@ -1,15 +1,16 @@
 {% extends 'base.html'%}
 {% load django_bootstrap5 %}
 {% block title%}
-Create Resume
+Edit Resume
 {% endblock %}
 
 {% block content %}
-<form method="POST">
+<form action="{% url 'resume_edit' resume.pk %}" method="POST">
     {% csrf_token %}
     <div>
         <div>
-            {% include 'partial/resume_form.html' %}
+            {% bootstrap_form form %}
+            <button type="submit" name="submit" class="btn btn-primary">Резюме</button>
         </div>
         <div>
             <a data-bs-toggle="modal" href="#education_create" role="button">Добавить место обучения</a>

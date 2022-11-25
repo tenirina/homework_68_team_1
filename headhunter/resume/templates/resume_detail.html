@@ -6,7 +6,9 @@ Resume
     <p>{{resume.resume_title}}</p>
     <p>{{resume.author.first_name}}</p>
     <p>{{resume.author.last_name}}</p>
+    {% if resume.author.avatar %}
     <img class="avatar_img" src="{{ resume.author.avatar.url }}" alt="user picture">
+    {% endif %}
     <p>{{resume.salary}}</p>
     <p>{{resume.profession}}</p>
     <p>{{resume.phone}}</p>

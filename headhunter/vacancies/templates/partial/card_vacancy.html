@@ -1,0 +1,13 @@
+<div class="container px-4 py-5" id="featured-3">
+    <h3 class="pb-2 border-bottom">{{el.title}}</h3>
+      <div class="feature col">
+        <h4>{{el.get_profession_display}}</h4>
+        <p >{{el.salary}}</p>
+         <p>{{ el.updated_at }}</p>
+        <a href="" class="btn btn-outline-secondary btn-lg" type="button">Обновить</a>
+        <a href=" {% url 'vacancy_edit' el.pk %} " class="btn btn-outline-secondary btn-lg" type="button">Редактировать</a>
+      </div>
+    </div>
+  </div>
+<div class="b-example-divider"></div>
+
