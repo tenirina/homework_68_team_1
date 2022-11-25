@@ -1,34 +1,24 @@
 {% extends 'base.html'%}
 {% load django_bootstrap5 %}
 {% block title%}
-    Create Resume
+Create Resume
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <form method="POST">
-        {% csrf_token %}
+<form method="POST">
+    {% csrf_token %}
+    <div>
         <div>
-            <div>
-                {% bootstrap_form form %}
-            </div>
-            <div>
-                <a class="btn btn-outline-secondary" data-bs-toggle="modal" href="#education_create" role="button">Добавить место обучения</a>
-            </div>
-            <br>
-            <div>
-                <a class="btn btn-outline-secondary" data-bs-toggle="modal" href="#experience_create" role="button">Добавить опыт работы</a>
-            </div>
-
-                    <div id="experience_card">
-
-                    </div>
-
-            <br>
-            <button type="submit" id="submit" class="btn btn-secondary">Создать резюме</button>
-            {% include 'partial/experience_form.html' %}
-            {% include 'partial/education_form.html' %}
+            {% include 'partial/resume_form.html' %}
         </div>
-    </form>
-</div>
+        <div>
+            <a data-bs-toggle="modal" href="#education_create" role="button">Добавить место обучения</a>
+        </div>
+        <div>
+            <a data-bs-toggle="modal" href="#experience_create" role="button">Добавить опыт работы</a>
+        </div>
+        {% include 'partial/experience_form.html' %}
+        {% include 'partial/education_form.html' %}
+    </div>
+</form>
 {% endblock %}

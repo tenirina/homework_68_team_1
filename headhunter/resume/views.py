@@ -31,7 +31,7 @@ class ResumeEditView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form_res_create'] = ResumeForm(instance=self.object)
+        context['form'] = ResumeForm(instance=self.object)
         context['form_exp'] = ExperienceForm()
         context['form_edu'] = EducationForm()
         return context

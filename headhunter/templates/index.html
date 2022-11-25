@@ -14,7 +14,27 @@
 {% block content %}
         {% if user.is_authenticated %}
         <div class="container">
-            I'm here
+            {% if user.is_worker %}
+                {% if yeap %}
+                    {% for el in vacancies %}
+                        <div>
+                            <h4>el.title</h4>
+                            <p>el.author</p>
+                            <a href="{% url 'vacancy_detail' el.pk %}" role="button">Детальнее</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <a href="{% url 'resume_create' %}" role="button">Создать резюме</a>
+                {% endif %}
+            {% else %}
+                {% for el in resumes %}
+                    <div>
+                        <h4>el.resume_title</h4>
+                        <p>el.author</p>
+                        <a href="{% url 'resume_detail' el.pk %}" role="button">Детальнее</a>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
         {% else %}
             <div class="promo">
