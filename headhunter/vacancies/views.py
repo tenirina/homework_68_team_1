@@ -1,8 +1,9 @@
 from django.shortcuts import redirect
 from django.views.generic import CreateView, ListView, UpdateView, DetailView
 from django.urls import reverse
-from vacancies.forms import VacancyForm, SearchForm
-from vacancies.models.vacancies import Vacancy
+from vacancies.forms import VacancyForm, SearchForm, VacancyResponceForm
+from vacancies.models.vacancies import Vacancy, ResponseToVacancy
+from django.http import HttpResponse
 
 
 
@@ -71,3 +72,22 @@ class VacancyDetailView(DetailView):
     template_name = 'vacancies_detail.html'
     model = Vacancy
     context_object_name = 'vacancy'
+
+
+class ResponceToVacancy(CreateView):
+    model = ResponseToVacancy
+    form_class = VacancyResponceForm
+
+    def post(self, request, *args, **kwargs):
+        vacancy = Vacancy.objects.get(pk=kwargs['pk'])
+        author = request.user
+        resume = request.POST['resume']
+        ResponseToVacancy.objects.create(author=author, resume_id=resume, vacancy=vacancy)
+        return HttpResponse(status=201)
+
+    def get_context_data(self, request, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = self.form_class
+        context['form'] = form
+        return context
+

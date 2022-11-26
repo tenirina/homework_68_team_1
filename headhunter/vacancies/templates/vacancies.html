@@ -12,7 +12,18 @@
 </div>
 <div>
     {%for el in vacancies%}
-        {{el.title}}
+    <div class="container px-4 py-5" id="featured-3">
+        <h3 class="pb-2 border-bottom">{{el.title}}</h3>
+          <div class="feature col">
+            <h4>{{el.get_profession_display}}</h4>
+            <p >{{el.salary}}</p>
+             <p>{{ el.updated_at }}</p>
+            <a class="nav-link" data-bs-toggle="modal" href="#vacancy_add_responce" role="button">Отклик</a>
+            {% include 'partial/vacancy_responce_form.html' %}
+          </div>
+        </div>
+      </div>
+    <div class="b-example-divider"></div>
     {%endfor%}
 </div>
 {% endblock %}
