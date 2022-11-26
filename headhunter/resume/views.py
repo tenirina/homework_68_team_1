@@ -82,6 +82,7 @@ class ExperienceCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         resume = Resume.objects.get(pk=kwargs['pk'])
+        print("fjjfjhhfhhfdffdgfgsfg")
         print(request.POST)
         company_name = request.POST.get('company_name')
         position = request.POST.get('position')
