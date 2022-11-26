@@ -5,23 +5,26 @@ Edit Resume
 {% endblock %}
 
 {% block content %}
-<form action="{% url 'resume_edit' resume.pk %}" method="POST">
-    {% csrf_token %}
-    <div>
+<div class="container">
+    <form action="{% url 'resume_edit' resume.pk %}" method="POST">
+        {% csrf_token %}
         <div>
-            {% bootstrap_form form %}
-            <button type="submit" name="submit" class="btn btn-primary">Резюме</button>
+            <div>
+                {% bootstrap_form form %}
+            </div>
+            <div>
+                <a data-bs-toggle="modal" href="#education_create" class="btn btn-outline-secondary" role="button">Добавить место обучения</a>
+            </div>
+            <br>
+            <div>
+                <a id='link_experience' data-resume-id={{resume.pk}} data-bs-toggle="modal" class="btn btn-outline-secondary" href="#experience_create" role="button">Добавить опыт работы</a>
+            </div>
+            <div id="experience_card"></div>
+            <br>
+             <button type="submit" name="submit" class="btn btn-secondary">Создать резюме</button>
+            {% include 'partial/experience_form.html' %}
+            {% include 'partial/education_form.html' %}
         </div>
-        <div>
-            <a data-bs-toggle="modal" href="#education_create" role="button">Добавить место обучения</a>
-        </div>
-        <div>
-            <a data-resume-id=resume.pk data-bs-toggle="modal" href="#experience_create" role="button">Добавить опыт работы</a>
-        </div>
-        <div id="experience_card" data-resume-id="resume.pk">
-        </div>
-        {% include 'partial/experience_form.html' %}
-        {% include 'partial/education_form.html' %}
+    </form>
     </div>
-</form>
 {% endblock %}
